@@ -1,11 +1,12 @@
 from app import app
+from flask import render_template
 
 
 # MAIN APPLICATION ROUTES
 @app.route('/')
 def home():
     # raise Exception('This is a general exception I\'m trying to raise for no reason.')
-    return 'Home Page'
+    return render_template('main/home.html')
 
 @app.route('/profile')
 def profile():
