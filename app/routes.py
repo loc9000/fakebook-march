@@ -10,7 +10,7 @@ def home():
 
 @app.route('/profile')
 def profile():
-    return 'Profile Page'
+    return render_template('main/profile.html')
 
 @app.route('/contact')
 def contact():
