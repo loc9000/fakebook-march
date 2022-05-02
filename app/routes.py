@@ -4,6 +4,7 @@ from app import app
 # MAIN APPLICATION ROUTES
 @app.route('/')
 def home():
+    # raise Exception('This is a general exception I\'m trying to raise for no reason.')
     return 'Home Page'
 
 @app.route('/profile')
