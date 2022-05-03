@@ -27,72 +27,19 @@
 <div class="row">
     <div class="col-12">
         <ul class="list-group">
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
-            <li class="list-group-item mb-4">
-                Blog Post Body
-                <div>
-                    <small>
-                        &mdash; Lucas Lang
-                        <span class="float-right">
-                            a few seconds ago
-                        </span>
-                    </small>
-                </div>
-            </li>
+            {% for post in posts %}
+                <li class="list-group-item mb-4">
+                    {{ post.body }}
+                    <div>
+                        <small>
+                            &mdash; {{ post.author.first_name }} {{ post.author.last_name }}
+                            <span class="float-right">
+                                {{ moment(post.date_created).fromNow() }}
+                            </span>
+                        </small>
+                    </div>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
