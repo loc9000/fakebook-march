@@ -1,5 +1,4 @@
-from app import app
-from flask import render_template
+from flask import render_template, current_app as app
 
 
 # MAIN APPLICATION ROUTES

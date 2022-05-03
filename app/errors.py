@@ -1,4 +1,4 @@
-from app import app
+from flask import current_app as app
 
 # NOT FOUND ERROR
 @app.errorhandler(404)
