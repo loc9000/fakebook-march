@@ -57,6 +57,20 @@
 
         <main class="my-5">
             <div id="content" class="container">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, m in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <strong>{{ m }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 
                 {% block content %}
                 {% endblock content %}

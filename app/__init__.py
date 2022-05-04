@@ -6,8 +6,8 @@ from flask_migrate import Migrate
 
 
 moment = Moment()
-db = SQLAlchemy()
-migrate = Migrate()
+db = SQLAlchemy() # Object Relational Mapper
+migrate = Migrate() # Handle Transaction for database
 
 def create_app(config_class=Config):
     app = Flask(__name__)
