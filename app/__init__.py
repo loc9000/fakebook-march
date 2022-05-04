@@ -3,11 +3,12 @@ from config import Config
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
+from flask_login import LoginManager
 
 moment = Moment()
 db = SQLAlchemy() # Object Relational Mapper
 migrate = Migrate() # Handle Transaction for database
+login = LoginManager() # handle login sessions
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -17,6 +18,7 @@ def create_app(config_class=Config):
     moment.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db)
+    login.init_app(app)
 
 
     with app.app_context():
