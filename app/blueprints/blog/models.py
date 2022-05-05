@@ -42,6 +42,19 @@ class User(db.Model, UserMixin):
         lazy='dynamic'
     )
 
+    def followed_posts(self):
+        # make a query to grab all the posts from the users the currently logged-in user is following
+        followed = Post.query.join(
+            followers,
+            (followers.c.followed_id == Post.author)
+        ).filter(followers.c.follower_id == self.id)
+
+        # Make a query for the currently logged-in user's posts
+        own = Post.query.filter_by(author=self.id)
+
+        # Join both the results together using .union() and sort them by their dates
+        return followed.union(own).order_by(Post.date_created.desc())
+
     def follow(self, user):
         if not self.is_following(user):
             self.followed.append(user)
@@ -86,7 +99,7 @@ class Post(db.Model):
         self.id = uuid.uuid4().hex
 
     def __repr__(self):
-        return f'<Post: {self.body[30]}...>'
+        return f'<Post: {self.body[:30]}...>'
 
 @login.user_loader
 def load_user(user_id):

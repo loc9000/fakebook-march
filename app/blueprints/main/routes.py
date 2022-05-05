@@ -29,7 +29,7 @@ def home():
         flash('You have created a new post', 'info')
         return redirect(url_for('home'))
     # raise Exception('This is a general exception I\'m trying to raise for no reason.')
-    return render_template('main/home.html', posts=[post.to_dict() for post in Post.query.order_by(Post.date_created.desc()).all()])
+    return render_template('main/home.html', posts=[post.to_dict() for post in current_user.followed_posts().all()])
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
