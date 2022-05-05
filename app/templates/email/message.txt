@@ -1,0 +1,9 @@
+
+Hello, Derek @ Coding Temple,
+You have a new inquiry.
+
+Name: {{ data.name }}
+Email: {{ data.email }}
+Budget: {{ data.selection }}
+Message:
+{{ data.message }}

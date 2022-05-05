@@ -1,8 +1,9 @@
 from flask import render_template, current_app as app, request, redirect, url_for, flash
 from datetime import datetime as dt
 from app.blueprints.blog.models import Post, User
-from app import db
+from app import db, mail
 from flask_login import current_user
+from flask_mail import Message
 
 # MAIN APPLICATION ROUTES
 @app.route('/', methods=['GET', 'POST'])
@@ -62,9 +63,22 @@ def profile():
         return redirect(url_for('profile'))
     return render_template('main/profile.html', posts=[post.to_dict() for post in Post.query.filter_by(author=current_user.get_id()).order_by(Post.date_created.desc()).all()])
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return "Contact Page"
+    if request.method == 'POST':
+        form_data = request.form
+        msg = Message(
+            subject='[Fakebook March] Contact form inquiry',
+            recipients=[app.config.get('MAIL_RECIPIENT')],
+            sender=app.config.get('MAIL_RECIPIENT'),
+            # body=render_template('email/message.txt', data=form_data),
+            html=render_template('email/message.html', data=form_data),
+            reply_to=form_data.get('email'),
+        )
+        mail.send(msg)
+        flash('Thank you for your inquiry. Please give us 48 hours to get back to you.', 'success')
+        return redirect(request.referrer)
+    return render_template('main/contact.html')
 
 # OBJECT RELATIONAL MAPPER
 
