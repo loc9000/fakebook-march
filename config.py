@@ -17,3 +17,5 @@ class Config:
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
     MAIL_RECIPIENT = os.getenv('MAIL_RECIPIENT')
+    STRIPE_PK = os.getenv('STRIPE_PK')
+    STRIPE_SK = os.getenv('STRIPE_SK')
