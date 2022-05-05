@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Followers</h2>
+<hr />
+
+<ul class="list-group">
+    {% for user in users %}
+        <li class="list-group-item">
+            {{ user.first_name }} {{ user.last_name }}
+            <span class="float-right">
+                {% if current_user.is_following(user) %}
+                    <a href="{{ url_for('unfollow', user_id=user.id) }}" class="btn btn-warning">Unfollow</a>
+                {% else %}
+                    <a href="{{ url_for('follow', user_id=user.id) }}" class="btn btn-success">Follow</a>
+                {% endif %}
+            </span>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

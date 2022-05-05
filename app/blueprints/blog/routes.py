@@ -8,11 +8,27 @@ from .models import Post
 # USER ROUTES
 @app.route('/users')
 def user_list():
-    return 'Users Page'
+    return render_template('users/list.html', users=[user for user in User.query.all() if user != current_user])
 
 @app.route('/users/<int:id>')
 def user_single(id):
     return 'User Single Page'
+
+@app.route('/users/unfollow/<user_id>')
+def unfollow(user_id):
+    user_to_unfollow = User.query.get(user_id)
+    current_user.unfollow(user_to_unfollow)
+    db.session.commit()
+    flash(f'You have unfollowed {user_to_unfollow.first_name} {user_to_unfollow.last_name}', 'primary')
+    return redirect(url_for('user_list'))
+
+@app.route('/users/follow/<user_id>')
+def follow(user_id):
+    user_to_follow = User.query.get(user_id)
+    current_user.follow(user_to_follow)
+    db.session.commit()
+    flash(f'You have followed {user_to_follow.first_name} {user_to_follow.last_name}', 'primary')
+    return redirect(url_for('user_list'))
 
 # a => t45dr
 # b => bdkzs
