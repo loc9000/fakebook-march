@@ -4,7 +4,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fakebook | Home</title>
+        <title>
+            {% block title %}Fakebook{% endblock title %}
+        </title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -42,46 +44,12 @@
         </main>
 
         <footer class="bg-dark">
-            <div id="footer-content" class="container py-5">
-                <div class="row">
-                    <!-- Footer links -->
-                    <div class="col-4">
-                        <h3 class="text-white">Links</h3>
-
-                        <hr>
-
-                        <ul class="list-unstyled">
-                            <li>
-                                <a class="nav-link text-white" href="#">Home</a>
-                            </li>
-                            <li>
-                                <a class="nav-link text-white" href="#">Contact</a>
-                            </li>
-                            <li>
-                                <a class="nav-link text-white" href="#">Users</a>
-                            </li>
-                            <li>
-                                <a class="nav-link text-white" href="#">Shop</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- newsletter signup -->
-                    <div class="col-4 offset-4">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="newsletter" id="newsletter" aria-describedby="helpId" placeholder="Sign up for our newsletter" />
-                                <input class="btn btn-info mt-3 float-right" type="button" value="Sign Up" />
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            {% include './snippets/footer.html' %}
         </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-        {{ moment.include_moment() }}
+        {% block scripts %}
+            {% include './snippets/scripts.html' %}
+        {% endblock scripts %}
 
     </body>
 </html>

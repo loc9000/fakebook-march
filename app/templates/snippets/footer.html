@@ -1,0 +1,35 @@
+<div id="footer-content" class="container py-5">
+    <div class="row">
+        <!-- Footer links -->
+        <div class="col-4">
+            <h3 class="text-white">Links</h3>
+
+            <hr>
+
+            <ul class="list-unstyled">
+                <li>
+                    <a class="nav-link text-white" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{{ url_for('contact') }}">Contact</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{{ url_for('user_list') }}">Users</a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="{{ url_for('shop_list') }}">Shop</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- newsletter signup -->
+        <div class="col-4 offset-4">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="newsletter" id="newsletter" aria-describedby="helpId" placeholder="Sign up for our newsletter" />
+                    <input class="btn btn-info mt-3 float-right" type="button" value="Sign Up" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

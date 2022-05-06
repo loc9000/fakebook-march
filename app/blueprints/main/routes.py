@@ -2,11 +2,12 @@ from flask import render_template, current_app as app, request, redirect, url_fo
 from datetime import datetime as dt
 from app.blueprints.blog.models import Post, User
 from app import db, mail
-from flask_login import current_user
+from flask_login import current_user, login_required
 from flask_mail import Message
 
 # MAIN APPLICATION ROUTES
 @app.route('/', methods=['GET', 'POST'])
+@login_required
 def home():
     # if current_user.is_authenticated:
     #     print(current_user.is_authenticated)
@@ -33,6 +34,7 @@ def home():
     return render_template('main/home.html', posts=[post.to_dict() for post in current_user.followed_posts().all()])
 
 @app.route('/profile', methods=['GET', 'POST'])
+@login_required
 def profile():
     if request.method == 'POST':
         form_data = request.form

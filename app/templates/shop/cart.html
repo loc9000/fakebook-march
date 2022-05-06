@@ -1,10 +1,14 @@
 {% extends 'layout.html' %}
 
+{% block title %}
+    {{ super() }} | Cart
+{% endblock title %}
+
 {% block content %}
 <h3>
     Cart
     <span class="float-right">
-        <form action="#" method="post">
+        <form action="{{ url_for('shop_checkout') }}" method="post">
             <input id="checkout-button" type="submit" class="btn btn-primary" value="Checkout">
         </form>
     </span>
@@ -67,3 +71,9 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock scripts %}

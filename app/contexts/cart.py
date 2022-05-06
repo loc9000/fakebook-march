@@ -42,5 +42,4 @@ def cart_context():
         'cart_size': sum([product.quantity for product in cart]),
         # 'cart_subtotal': 0,
         'cart_grandtotal': f"{grandtotal:,.2f}",
-
     }

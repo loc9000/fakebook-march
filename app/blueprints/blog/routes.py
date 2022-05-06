@@ -1,12 +1,13 @@
 from crypt import methods
 from flask import current_app as app, render_template, request, redirect, url_for, flash
 from .models import User
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from app import db
 from .models import Post
 
 # USER ROUTES
 @app.route('/users')
+@login_required
 def user_list():
     return render_template('users/list.html', users=[user for user in User.query.all() if user != current_user])
 
@@ -100,6 +101,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/blog/update', methods=['POST'])
+@login_required
 def blog_profile():
     if request.method == 'POST':
         data = request.form.get('blog_post')
