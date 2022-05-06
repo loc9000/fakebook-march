@@ -86,8 +86,8 @@ def shop_checkout():
         checkout_session = stripe.checkout.Session.create(
             line_items=items,
             mode='payment',
-            success_url='http://127.0.0.1:5000/shop/cart',
-            cancel_url='http://127.0.0.1:5000/shop/cart',
+            success_url='https://fakebook-march-2022.herokuapp.com/shop/cart',
+            cancel_url='https://fakebook-march-2022.herokuapp.com/shop/cart',
         )
 
         # upon successful payment, remove all items from user's cart
